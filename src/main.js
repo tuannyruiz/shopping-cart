@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store/index.js'
 
 import App from './App.vue'
 import AppProducts from './components/AppProducts.vue'
@@ -20,4 +21,5 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router,
+  store
 })
