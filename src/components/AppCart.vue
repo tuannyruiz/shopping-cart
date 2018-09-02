@@ -1,10 +1,10 @@
 <template>
-  <p>produtos</p>
+  <p>carrinho</p>
 </template>
 
 <script>
 export default {
-  name: 'Products'
+  name: 'AppCart'
 }
 </script>
 
