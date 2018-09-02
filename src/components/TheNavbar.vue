@@ -18,7 +18,7 @@
           Produtos
         </router-link>
 
-        <div class="nav-item is-tab" :class="{ 'active-bottom-border': $route.path === '/carrinho' }">
+        <div class="nav-item is-tab" :class="activeItem">
           <div class="field is-grouped">
             <p class="control">
               <router-link to='/carrinho' class="button is-info">
@@ -37,7 +37,12 @@
 
 <script>
 export default {
-  name: 'TheNavbar'
+  name: 'TheNavbar',
+  computed: {
+    activeItem () {
+      return this.$route.path === '/carrinho' ? 'active-bottom-border' : ''
+    }
+  }
 }
 </script>
 
