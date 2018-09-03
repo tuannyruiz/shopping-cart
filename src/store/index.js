@@ -16,14 +16,20 @@ const state = {
     {
       id: 'def456',
       name: 'Produto 2',
-      description: 'Também usaremos esse produto pra teste',
+      description: 'Produto utilizado a fim de testes',
       price: 8
     },
     {
       id: 'ghi789',
       name: 'Produto 3',
-      description: 'Esse é o último produto que usaremos pra teste',
+      description: 'Produto utilizado a fim de testes',
       price: 24
+    },
+    {
+      id: 'jkl123',
+      name: 'Produto 4',
+      description: 'Produto utilizado a fim de testes',
+      price: 10
     }
   ]
 }
