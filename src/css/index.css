@@ -19,6 +19,13 @@ body {
   background: var(--white);
 }
 
+.navbar__cart {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  margin-top: 4px;
+  padding: 10px !important
+}
+
 .products {
   margin-top: 100px;
   text-align: center;
@@ -86,4 +93,30 @@ body {
 .add-to-cart__button:active {
   transition: transform 0.2s ease-out;
   transform: scale(0.98);
+}
+
+/* SOBRESCRIÇÃO ESTILOS BOOTSTRAP */
+/* ME DESCULPEM POR ISSO :( */
+
+.navbar-brand {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a:not(.navbar__cart):hover {
+  background: var(--white);
+  text-decoration: underline;
+}
+
+.navbar-nav > li > a:hover {
+  background: var(--white);
+  color: var(--aux-color);
+  border-color: var(--aux-color);
+}
+
+.navbar__cart {
+  padding: 10px !important
 }

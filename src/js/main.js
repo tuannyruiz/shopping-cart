@@ -60,7 +60,7 @@
 					newItems = items;
 					var updatedCart = {};
 					updatedCart.items = newItems;
-
+          
           var itemsLength = items.length + 1;
           self.totalItems.html('('+ itemsLength +' ' + self._plural(itemsLength) + ')');
 
@@ -198,11 +198,6 @@
 			this.storage.clear();
 		},
 		
-		_formatNumber: function( num, places ) {
-			var n = num.toFixed( places );
-			return n;
-		},
-		
 		_extractPrice: function( element ) {
 			var self = this;
 			var text = element.text();
@@ -223,7 +218,7 @@
 			if( !isNaN( num ) ) {
 				return num;
 			} else {
-				console.warn( numStr + " cannot be converted into a number" );
+				console.warn( numStr + " não pode ser convertido" );
 				return false;
 			}
 		},

@@ -19,6 +19,13 @@ body {
   background: var(--white);
 }
 
+.navbar__cart {
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
+  margin-top: 4px;
+  padding: 10px !important
+}
+
 .cart {
   margin-top: 70px;
 }
@@ -27,6 +34,7 @@ body {
   color: var(--main-color);
   font-size: 36px;
   font-weight: 600;
+  margin-bottom: 30px;
 }
 
 .cart__title--small {
@@ -84,9 +92,15 @@ body {
   text-align: center;
 }
 
-.details__items {
+.details__list {
   border-bottom: 2px solid var(--gray);
   margin-top: 30px;
+}
+
+.details__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .details__total {
@@ -124,4 +138,30 @@ body {
 .details__button:active {
   transition: transform 0.2s ease-out;
   transform: scale(0.98);
+}
+
+/* SOBRESCRIÇÃO ESTILOS BOOTSTRAP */
+/* ME DESCULPEM POR ISSO :( */
+
+.navbar-brand {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a:not(.navbar__cart):hover {
+  background: var(--white);
+  text-decoration: underline;
+}
+
+.navbar-nav > li > a:hover {
+  background: var(--white);
+  color: var(--aux-color);
+  border-color: var(--aux-color);
+}
+
+.navbar__cart {
+  padding: 10px !important
 }
