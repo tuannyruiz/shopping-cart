@@ -16,7 +16,6 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="src/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="src/css/index.css" />
-    <script src="src/js/products.js"></script>
     <script src="src/js/main.js"></script>
   </head>
   <body>
@@ -42,25 +41,12 @@
       </nav>
 
       <div class="container">
-        <div class="row products">
-          <div class="col-md-4">
-            <div class="product">
-              <img class="product__image" src="https://via.placeholder.com/550x250" alt="">
-              <div class="product__wrapper"  data-name="Produto 1" data-price="20">
-                <h3 class="product__name">Product 1</h3>
-                <p class="product__price">R$ 20,00</p>
-                <form class="add-to-cart" action="cart.html" method="post">
-                  <div>
-                    <label for="qty-1" class="add-to-cart__label">Quantidade</label>
-                    <input type="text" name="qty-1" id="qty-1" class="add-to-cart__quantity" value="1" />
-                  </div>
-                  <input type="submit" value="Adicionar ao carrinho" class="btn add-to-cart__button" />
-                </form>
-              </div>
-            </div>
-          </div>
+        <div class="row products" id="products">
+          <!-- JS RENDER -->
         </div>
       </div>
     </div>
+
+    <script src="src/js/products.js"></script>
   </body>
 </html>
