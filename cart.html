@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="src/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="src/css/cart.css" />
+    <script src="src/js/main.js"></script>
+  </head>
+  <body>
+    <div id="site">
+      <nav class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Brechó.me</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Produtos</a></li>
+              <li><a href="#">Carrinho</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container cart">
+        <h2 class="cart__title">
+          Seu carrinho 
+          <span class="cart__title--small" id="total-items"></span>
+        </h2>
+        <div class="row">
+          <form id="shopping-cart" action="cart.html" method="post">
+            <div class="col-md-8">
+              <table class="shopping-cart">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Preço</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              </p>
+              <div id="shopping-cart-actions">
+                <input type="submit" name="update" id="update-cart" class="btn shopping-cart__button" value="Atualizar carrinho" />
+                <input type="submit" name="delete" id="empty-cart" class="btn shopping-cart__button" value="Limpar carrinho" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="details">
+                <h3 class="details__title">Detalhes da compra</h3>
+                <ul class="details__items">
+                  <li class=""><span>Exemplo</span><span>R$ 20</span></li>
+                  <li class=""><span>Exemplo</span><span>R$ 20</span></li>
+                </ul>
+                <p class="details__total">
+                  <strong>Total:</strong> <span id="stotal"></span>
+                </p>
+                <a href="checkout.html" class="btn details__button">Pagar.me</a>
+                <a href="index.html" class="details__link">Continue comprando</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

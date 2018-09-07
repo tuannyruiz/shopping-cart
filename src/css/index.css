@@ -2,11 +2,21 @@
   --main-color: #37474f;
   --aux-color: #4db6ac;
   --black: #000;
+  --light-gray: #f2f2f2;
+  --gray: #b0bec5;
   --white: #fff;
 }
 
 html body * {
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: var(--light-gray);
+}
+
+.navbar {
+  background: var(--white);
 }
 
 .products {
@@ -26,6 +36,7 @@ html body * {
 }
 
 .product__wrapper {
+  background: var(--white);
   padding: 20px;
 }
 
