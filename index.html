@@ -14,7 +14,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" media="screen" href="src/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="src/css/reset.css" />
   <script src="lib/js/main.js"></script>
 </head>
 <body>
@@ -39,10 +42,27 @@
   </nav>
 
   <div class="container">
-    <div class="row">
-
+    <div class="row products">
+      <div class="col-md-4">
+        <div class="product" data-name="Produto 1" data-price="20">
+          <img class="product__image" src="https://via.placeholder.com/550x250" alt="">
+          <div class="product__wrapper">
+            <h3 class="product__name">Product 1</h3>
+            <p class="product__price">R$ 20,00</p>
+            <form class="add-to-cart" action="cart.html" method="post">
+                <div>
+                    <label for="qty-1" class="add-to-cart__label">Quantidade</label>
+                    <input type="text" name="qty-1" id="qty-1" class="add-to-cart__quantity" value="1" />
+                </div>
+                <input type="submit" value="Adicionar ao carrinho" class="btn add-to-cart__button" />
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+
 
 </body>
 </html>
