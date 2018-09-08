@@ -92,20 +92,45 @@
 				var cart = this._toJSONObject(this.storage.getItem(this.cartName));
 				var items = cart.items;
 				var tableCart = this.formCart.find(".shopping-cart");
-				var tableCartBody = tableCart.find("tbody");
+				var listCartBody = tableCart.find("#shopping-cart__list");
+        var detailsCart = this.formCart.find("#details");
 
 				if(items.length == 0) {
-					tableCartBody.html("");	
+          var detailEmpty = `
+            <p class="details__empty">Você ainda não adicionou nenhum item no carrinho</p>
+          `;
+
+					listCartBody.html("");
+          detailsCart.html(detailEmpty);
 				} else {
 					for(var i = 0; i < items.length; ++i) {
 						var item = items[i];
 						var product = item.product;
 						var price = this.currency + " " + item.price;
 						var qty = item.qty;
-						var html = "<tr><td class='pname'>" + product + "</td>" + "<td class='pqty'><input type='text' value='" + qty + "' class='qty'/></td>";
-					    	html += "<td class='pprice'>" + price + "</td><td class='pdelete'><a href='' data-product='" + product + "'>&times;</a></td></tr>";
+            var total = this.currency + ' ' + (item.price * item.qty);
+						// var html = "<tr><td class='pname'>" + product + "</td>" + "<td class='pqty'><input type='text' value='" + qty + "' class='qty'/></td>";
+					  //   	html += "<td class='pprice'>" + price + "</td><td class='pdelete'><a href='' data-product='" + product + "'>&times;</a></td></tr>";
+            var listItemHtml = `
+              <div class="cart-item">
+                <img src="https://via.placeholder.com/550x250" alt="" class="cart-item__image">
+                <div class="cart-item__wrapper">
+                  <h3 class="cart-item__title">${product}</h3>
+                  <span class="cart-item__price">${total}</span>
+                  <input class="cart-item__quantity" type="text" value="${qty}">
+                </div>
+              </div>
+              <hr>
+            `;
+            var detailHtml = `
+              <li class="details__item">
+                <span>${product}</span>
+                <span>${total}</span>
+              </li>
+            `
 					
-						tableCartBody.html(tableCartBody.html() + html);
+						listCartBody.html(listCartBody.html() + listItemHtml);
+            detailsCart.html(detailsCart.html() + detailHtml);
           }
 
           var itemsLength = items.length;
@@ -133,21 +158,21 @@
 		updateCart: function() {
 			var self = this;
 		  if(self.updateCartBtn.length) {
-			self.updateCartBtn.on( "click", function() {
-				var $rows = self.formCart.find( "tbody tr" );
-				var cart = self.storage.getItem( self.cartName );
-				var total = self.storage.getItem( self.total );
+			self.updateCartBtn.on("click", function() {
+				var rows = self.formCart.find("#shopping-cart__list");
+				var cart = self.storage.getItem(self.cartName);
+				var total = self.storage.getItem(self.total);
 				
 				var updatedTotal = 0;
 				var totalQty = 0;
 				var updatedCart = {};
 				updatedCart.items = [];
 				
-				$rows.each(function() {
-					var $row = $( this );
-					var pname = $.trim( $row.find( ".pname" ).text() );
-					var pqty = self._convertString( $row.find( ".pqty > .qty" ).val() );
-					var pprice = self._convertString( self._extractPrice( $row.find( ".pprice" ) ) );
+				rows.each(function() {
+					var row = $(this);
+					var pname = $.trim(row.find(".cart-item__title").text());
+					var pqty = self._convertString(row.find(".cart-item__quantity").val());
+					var pprice = self._convertString(self._extractPrice(row.find(".cart-item__price")));
 					
 					var cartObj = {
 						product: pname,
@@ -155,15 +180,15 @@
 						qty: pqty
 					};
 					
-					updatedCart.items.push( cartObj );
+					updatedCart.items.push(cartObj);
 					
 					var subTotal = pqty * pprice;
 					updatedTotal += subTotal;
 					totalQty += pqty;
 				});
 				
-				self.storage.setItem( self.total, self._convertNumber( updatedTotal ) );
-				self.storage.setItem( self.cartName, self._toJSONString( updatedCart ) );
+				self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+				self.storage.setItem(self.cartName, self._toJSONString(updatedCart));
 				
 			});
 		  }
@@ -172,7 +197,7 @@
 		handleAddToCartForm: function() {
 			var self = this;
 			self.formAddToCart.each(function() {
-				var $form = $( this );
+				var $form = $(this);
 				var $product = $form.parent();
 				var price = self._convertString( $product.data( "price" ) );
 				var name =  $product.data( "name" );
@@ -198,27 +223,27 @@
 			this.storage.clear();
 		},
 		
-		_extractPrice: function( element ) {
+		_extractPrice: function(element) {
 			var self = this;
 			var text = element.text();
-			var price = text.replace( self.currency, "" ).replace( " ", "" );
+			var price = text.replace(self.currency, "").replace(" ", "");
 			return price;
 		},
 		
-		_convertString: function( numStr ) {
+		_convertString: function(numStr) {
 			var num;
-			if( /^[-+]?[0-9]+\.[0-9]+$/.test( numStr ) ) {
-				num = parseFloat( numStr );
-			} else if( /^\d+$/.test( numStr ) ) {
-				num = parseInt( numStr, 10 );
+			if(/^[-+]?[0-9]+\.[0-9]+$/.test(numStr)) {
+				num = parseFloat(numStr);
+			} else if(/^\d+$/.test(numStr)) {
+				num = parseInt(numStr, 10);
 			} else {
-				num = Number( numStr );
+				num = Number(numStr);
 			}
 			
-			if( !isNaN( num ) ) {
+			if(!isNaN(num)) {
 				return num;
 			} else {
-				console.warn( numStr + " não pode ser convertido" );
+				console.warn(numStr + " não pode ser convertido");
 				return false;
 			}
 		},
@@ -231,35 +256,35 @@
       }
     },
 		
-		_convertNumber: function( n ) {
+		_convertNumber: function(n) {
 			var str = n.toString();
 			return str;
 		},
 		
-		_toJSONObject: function( str ) {
-			var obj = JSON.parse( str );
+		_toJSONObject: function(str) {
+			var obj = JSON.parse(str);
 			return obj;
 		},
 	
-  	_toJSONString: function( obj ) {
-			var str = JSON.stringify( obj );
+  	_toJSONString: function(obj) {
+			var str = JSON.stringify(obj);
 			return str;
 		},
 		
-		_addToCart: function( values ) {
-			var cart = this.storage.getItem( this.cartName );
+		_addToCart: function(values) {
+			var cart = this.storage.getItem(this.cartName);
 			
-			var cartObject = this._toJSONObject( cart );
+			var cartObject = this._toJSONObject(cart);
 			var cartCopy = cartObject;
 			var items = cartCopy.items;
-			items.push( values );
+			items.push(values);
 			
-			this.storage.setItem( this.cartName, this._toJSONString( cartCopy ) );
+			this.storage.setItem(this.cartName, this._toJSONString(cartCopy));
 		},
 	};
 	
 	$(function() {
-		var shop = new $.Shop( "#site" );
+		var shop = new $.Shop("#site");
 	});
 
-})( jQuery );
+})(jQuery);
