@@ -42,7 +42,7 @@
 
 		deleteItem: function() {
 			var self = this;
-			if(self.formCart.length) {
+			if(self.listCart.length) {
 				var cart = this._toJSONObject(this.storage.getItem(this.cartName));
 				var items = cart.items;
 
@@ -62,7 +62,7 @@
 					var updatedCart = {};
 					updatedCart.items = newItems;
           
-          var itemsLength = items.length + 1;
+          var itemsLength = items.length;
           self.totalItems.html('('+ itemsLength +' ' + self._plural(itemsLength) + ')');
 
 					var updatedTotal = 0;
@@ -81,7 +81,7 @@
 
 					self.storage.setItem(self.total, self._convertNumber(updatedTotal));
 					self.storage.setItem(self.cartName, self._toJSONString(updatedCart));
-					$(this).parents("tr").remove();
+					$(this).parents(".cart-item").remove();
 					self.subTotal[0].innerHTML = self.currency + " " + self.storage.getItem(self.total);
 				});
 			}
@@ -107,20 +107,20 @@
 					for(var i = 0; i < items.length; ++i) {
 						var item = items[i];
 						var product = item.product;
+						var image = item.image;
 						var price = this.currency + " " + item.price;
 						var qty = item.qty;
             var total = this.currency + ' ' + (item.price * item.qty);
             var listItemHtml = `
               <div class="cart-item">
-                <img src="https://via.placeholder.com/550x250" alt="" class="cart-item__image">
+                <img src="${image}" alt="Foto de ${product}" class="cart-item__image">
                 <div class="cart-item__wrapper">
                   <h3 class="cart-item__title">${product}</h3>
                   <span class="cart-item__price">${price}</span>
                   <input class="cart-item__quantity" type="text" value="${qty}">
-                  <a href='' class="cart-item__remove" data-product='"${product}"'>Remover do carrinho</a>
+                  <a href='' class="cart-item__remove" data-product="${product}">Remover do carrinho</a>
                 </div>
               </div>
-              <hr>
             `;
             var detailHtml = `
               <li class="details__item">
@@ -149,7 +149,7 @@
 		emptyCart: function() {
 			var self = this;
 			if(self.emptyCartBtn.length) {
-				self.emptyCartBtn.on( "click", function() {
+				self.emptyCartBtn.on("click", function() {
 					self._emptyCart();
 				});
 			}
@@ -196,21 +196,24 @@
 		handleAddToCartForm: function() {
 			var self = this;
 			self.formAddToCart.each(function() {
-				var $form = $(this);
-				var $product = $form.parent();
-				var price = self._convertString( $product.data( "price" ) );
-				var name =  $product.data( "name" );
+				var form = $(this);
+				var product = form.parent();
+				var price = self._convertString(product.data("price"));
+				var name =  product.data("name");
+        var image = product.data("image");
 				
-				$form.on( "submit", function() {
-					var qty = self._convertString( $form.find( ".add-to-cart__quantity" ).val() );
+				form.on("submit", function() {
+					var qty = self._convertString(form.find(".add-to-cart__quantity").val());
 					var subTotal = qty * price;
-					var total = self._convertString( self.storage.getItem( self.total ) );
+					var total = self._convertString(self.storage.getItem(self.total));
 					var sTotal = total + subTotal;
-					self.storage.setItem( self.total, sTotal );
+					self.storage.setItem(self.total, sTotal);
+
 					self._addToCart({
 						product: name,
 						price: price,
-						qty: qty
+						qty: qty,
+            image: image
 					});
 				});
 			});

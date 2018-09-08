@@ -55,7 +55,7 @@ const card = products.map(product => `
   <div class="col-md-4 col-sm-6">
     <div class="product">
       <img class="product__image" src="${product.image}" alt="">
-      <div class="product__wrapper" data-name="${product.name}" data-price="${product.price}">
+      <div class="product__wrapper" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">
         <h3 class="product__name">${product.name}</h3>
         <p class="product__price">R$ ${product.price}</p>
         <form class="add-to-cart" action="cart.html" method="post">
