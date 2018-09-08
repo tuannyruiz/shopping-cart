@@ -78,6 +78,9 @@ body {
 
 .cart-item {
   display: flex;
+  border-bottom: 1px solid var(--gray);
+  margin-bottom: 20px;
+  padding: 20px 0;
 }
 
 .cart-item__image {

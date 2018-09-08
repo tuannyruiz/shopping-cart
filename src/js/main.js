@@ -49,7 +49,6 @@
 				$(document).on("click", ".cart-item__remove", function(e) {
 					e.preventDefault();
           var productName = $(this).data("product");
-					var ItemName = $(this).data("product");
 					var newItems = [];
 					for(var i = 0; i < items.length; ++i) {
 						var item = items[i];
@@ -170,14 +169,16 @@
           
           rows.each(function() {
             var row = $(this);
-            var pname = $.trim(row.find(".cart-item__title").text());
+            var pname = row.find(".cart-item__title").text();
             var pqty = self._convertString(row.find(".cart-item__quantity").val());
             var pprice = self._convertString(self._extractPrice(row.find(".cart-item__price")));
+            var pimage = row.find(".cart-item__image").attr('src');
             
             var cartObj = {
               product: pname,
               price: pprice,
-              qty: pqty
+              qty: pqty,
+              image: pimage
             };
             
             updatedCart.items.push(cartObj);
