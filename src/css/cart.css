@@ -106,7 +106,18 @@ body {
 }
 
 .cart-item__quantity {
-  margin-top: 15px;
+  display: block;
+  margin: 15px 0;
+  text-align: center;
+  width: 70px;
+}
+
+.cart-item__remove {
+  color: var(--aux-color);
+}
+
+.cart-item__remove:hover {
+  color: var(--main-color);
 }
 
 .details {

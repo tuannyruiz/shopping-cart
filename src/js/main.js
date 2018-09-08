@@ -13,6 +13,7 @@
 
 			this.formAddToCart = this.$element.find("form.add-to-cart");
 			this.formCart = this.$element.find("#shopping-cart");
+      this.listCart = this.$element.find("#shopping-cart__list");
 			this.subTotal = this.$element.find("#stotal");
       this.totalItems = this.$element.find("#total-items");
 			this.shoppingCartActions = this.$element.find("#shopping-cart-actions");
@@ -45,7 +46,7 @@
 				var cart = this._toJSONObject(this.storage.getItem(this.cartName));
 				var items = cart.items;
 
-				$(document).on("click", ".pdelete a", function(e) {
+				$(document).on("click", ".cart-item__remove", function(e) {
 					e.preventDefault();
           var productName = $(this).data("product");
 					var ItemName = $(this).data("product");
@@ -109,15 +110,14 @@
 						var price = this.currency + " " + item.price;
 						var qty = item.qty;
             var total = this.currency + ' ' + (item.price * item.qty);
-						// var html = "<tr><td class='pname'>" + product + "</td>" + "<td class='pqty'><input type='text' value='" + qty + "' class='qty'/></td>";
-					  //   	html += "<td class='pprice'>" + price + "</td><td class='pdelete'><a href='' data-product='" + product + "'>&times;</a></td></tr>";
             var listItemHtml = `
               <div class="cart-item">
                 <img src="https://via.placeholder.com/550x250" alt="" class="cart-item__image">
                 <div class="cart-item__wrapper">
                   <h3 class="cart-item__title">${product}</h3>
-                  <span class="cart-item__price">${total}</span>
+                  <span class="cart-item__price">${price}</span>
                   <input class="cart-item__quantity" type="text" value="${qty}">
+                  <a href='' class="cart-item__remove" data-product='"${product}"'>Remover do carrinho</a>
                 </div>
               </div>
               <hr>
@@ -158,39 +158,38 @@
 		updateCart: function() {
 			var self = this;
 		  if(self.updateCartBtn.length) {
-			self.updateCartBtn.on("click", function() {
-				var rows = self.formCart.find("#shopping-cart__list");
-				var cart = self.storage.getItem(self.cartName);
-				var total = self.storage.getItem(self.total);
-				
-				var updatedTotal = 0;
-				var totalQty = 0;
-				var updatedCart = {};
-				updatedCart.items = [];
-				
-				rows.each(function() {
-					var row = $(this);
-					var pname = $.trim(row.find(".cart-item__title").text());
-					var pqty = self._convertString(row.find(".cart-item__quantity").val());
-					var pprice = self._convertString(self._extractPrice(row.find(".cart-item__price")));
-					
-					var cartObj = {
-						product: pname,
-						price: pprice,
-						qty: pqty
-					};
-					
-					updatedCart.items.push(cartObj);
-					
-					var subTotal = pqty * pprice;
-					updatedTotal += subTotal;
-					totalQty += pqty;
-				});
-				
-				self.storage.setItem(self.total, self._convertNumber(updatedTotal));
-				self.storage.setItem(self.cartName, self._toJSONString(updatedCart));
-				
-			});
+        self.updateCartBtn.on("click", function() {
+          var rows = self.listCart.find(".cart-item");
+          var cart = self.storage.getItem(self.cartName);
+          var total = self.storage.getItem(self.total);
+          
+          var updatedTotal = 0;
+          var totalQty = 0;
+          var updatedCart = {};
+          updatedCart.items = [];
+          
+          rows.each(function() {
+            var row = $(this);
+            var pname = $.trim(row.find(".cart-item__title").text());
+            var pqty = self._convertString(row.find(".cart-item__quantity").val());
+            var pprice = self._convertString(self._extractPrice(row.find(".cart-item__price")));
+            
+            var cartObj = {
+              product: pname,
+              price: pprice,
+              qty: pqty
+            };
+            
+            updatedCart.items.push(cartObj);
+            
+            var subTotal = pqty * pprice;
+            updatedTotal += subTotal;
+            totalQty += pqty;
+          });
+          
+          self.storage.setItem(self.total, self._convertNumber(updatedTotal));
+          self.storage.setItem(self.cartName, self._toJSONString(updatedCart));
+        });
 		  }
 		},
 		
