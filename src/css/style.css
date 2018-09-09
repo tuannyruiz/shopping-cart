@@ -45,19 +45,19 @@ table {
   transform: scale(0.98); }
 
 .navbar-brand {
-  color: var(--main-color); }
+  color: #37474f; }
 
 .navbar-nav > li > a {
-  color: var(--main-color); }
+  color: #37474f; }
 
 .navbar-nav > li > a:not(.navbar__cart):hover {
-  background: var(--white);
+  background: #fff;
   text-decoration: underline; }
 
 .navbar-nav > li > a:hover {
-  background: var(--white);
-  color: var(--aux-color);
-  border-color: var(--aux-color); }
+  background: #fff;
+  color: #4db6ac;
+  border-color: #4db6ac; }
 
 .navbar__cart {
   padding: 10px !important; }
@@ -177,6 +177,14 @@ body {
       color: #fff; }
     .details__button:focus {
       color: #fff; }
+
+.navbar {
+  background: #fff; }
+  .navbar__cart {
+    border: 1px solid #37474f;
+    border-radius: 5px;
+    margin-top: 4px;
+    padding: 10px !important; }
 
 .products {
   margin-top: 100px;

@@ -1,21 +1,21 @@
 
 .navbar-brand {
-  color: var(--main-color);
+  color: $main-color;
 }
 
 .navbar-nav > li > a {
-  color: var(--main-color);
+  color: $main-color;
 }
 
 .navbar-nav > li > a:not(.navbar__cart):hover {
-  background: var(--white);
+  background: $white;
   text-decoration: underline;
 }
 
 .navbar-nav > li > a:hover {
-  background: var(--white);
-  color: var(--aux-color);
-  border-color: var(--aux-color);
+  background: $white;
+  color: $aux-color;
+  border-color: $aux-color;
 }
 
 .navbar {
