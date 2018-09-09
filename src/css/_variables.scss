@@ -1,0 +1,18 @@
+$main-color: #37474f;
+$aux-color: #4db6ac;
+$black: #000;
+$light-gray: #f2f2f2;
+$gray: #b0bec5;
+$white: #fff;
+
+@mixin style-button($bg: $aux-color, $color: $white) {
+  background: $bg;
+  color: $color;
+  font-size: 16px;
+  transition: transform 0.2s ease-in;
+}
+
+%active-button {
+  transition: transform 0.2s ease-out;
+  transform: scale(0.98);
+}

@@ -1,0 +1,25 @@
+
+.navbar-brand {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a {
+  color: var(--main-color);
+}
+
+.navbar-nav > li > a:not(.navbar__cart):hover {
+  background: var(--white);
+  text-decoration: underline;
+}
+
+.navbar-nav > li > a:hover {
+  background: var(--white);
+  color: var(--aux-color);
+  border-color: var(--aux-color);
+}
+
+.navbar {
+  &__cart {
+    padding: 10px !important;
+  }
+}
