@@ -46,6 +46,12 @@ const products = [
     name: 'Produto 8',
     price: 90.00,
     image: 'https://via.placeholder.com/550x250'
+  },
+  {
+    id: 9,
+    name: 'Produto 9',
+    price: 75.00,
+    image: 'https://via.placeholder.com/550x250'
   }
 ]
 
