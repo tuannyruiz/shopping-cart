@@ -26,11 +26,9 @@
 			this.emptyCart();
 			this.updateCart();
 			this.displayCart();
-			this.deleteItem();						
+			this.deleteItem();
 		},
 		
-		// Métodos públicos:
-
 		createStorageCart: function() {
 			if(this.storage.getItem(this.cartName) == null) {
 				var cart = {};
@@ -52,11 +50,12 @@
 					var newItems = [];
 					for(var i = 0; i < items.length; ++i) {
 						var item = items[i];
-						var product = item.product;	
+						var product = item.product;
 						if(product == productName) {
 							items.splice(i, 1);
 						}
 					}
+
 					newItems = items;
 					var updatedCart = {};
 					updatedCart.items = newItems;
@@ -100,7 +99,7 @@
             <p class="details__empty">Você ainda não adicionou nenhum item no carrinho</p>
           `;
 
-					listCartBody.html("");
+					listCartBody.html(detailEmpty);
           detailsCart.html(detailEmpty);
 				} else {
 					for(var i = 0; i < items.length; ++i) {
@@ -170,9 +169,9 @@
           rows.each(function() {
             var row = $(this);
             var pname = row.find(".cart-item__title").text();
+            var pimage = row.find(".cart-item__image").attr('src');
             var pqty = self._convertString(row.find(".cart-item__quantity").val());
             var pprice = self._convertString(self._extractPrice(row.find(".cart-item__price")));
-            var pimage = row.find(".cart-item__image").attr('src');
             
             var cartObj = {
               product: pname,
@@ -219,8 +218,6 @@
 				});
 			});
 		},
-		
-		// Métodos privados
 
 		_emptyCart: function() {
 			this.storage.clear();
